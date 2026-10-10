@@ -19,10 +19,12 @@ public class SkeletonVillagerRenderer extends AbstractSkeletonRenderer<SkeletonV
         super(context, ModModelLayers.SKELETON_VILLAGER, ModModelLayers.SKELETON_VILLAGER_ARMOR);
     }
 
+    @Override
     public Identifier getTextureLocation(final SkeletonRenderState state) {
         return SKELETON_VILLAGER_LOCATION;
     }
 
+    @Override
     public SkeletonRenderState createRenderState() {
         return new SkeletonRenderState();
     }
