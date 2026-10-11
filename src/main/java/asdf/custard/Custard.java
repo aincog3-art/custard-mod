@@ -1,6 +1,7 @@
 package asdf.custard;
 
 import asdf.custard.entity.ModEntities;
+import asdf.custard.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.resources.Identifier;
@@ -21,6 +22,7 @@ public class Custard implements ModInitializer {
 		ModEntities.registerModEntityTypes();
 
 		ModEntities.registerAttributes();
+		ModItems.initialize();
 	}
 
 	public static Identifier id(String path) {

@@ -31,4 +31,5 @@ public class SkeletonVillager extends AbstractSkeleton {
     protected SoundEvent getStepSound() {
         return SoundEvents.SKELETON_STEP;
     }
+
 }
