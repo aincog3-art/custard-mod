@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "custard:item/skeleton_villager_spawn_egg"
+  }
+}

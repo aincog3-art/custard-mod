@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "custard:illager_head",
+    "custard:villager_head",
+    "custard:zombie_villager_head"
+  ]
+}

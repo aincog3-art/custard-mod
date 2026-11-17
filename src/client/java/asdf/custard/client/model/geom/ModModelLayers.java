@@ -1,5 +1,6 @@
 package asdf.custard.client.model.geom;
 
+import asdf.custard.client.model.monster.GhostModel;
 import asdf.custard.client.model.monster.HarpoonModel;
 import asdf.custard.client.model.monster.SkeletonVillagerModel;
 import asdf.custard.client.model.monster.SunkenModel;
@@ -20,6 +21,7 @@ import static net.minecraft.client.model.HumanoidModel.createArmorMeshSet;
 public class ModModelLayers {
     private static final String DEFAULT_LAYER = "main";
     private static final Set<ModelLayerLocation> ALL_MODELS = Sets.newHashSet();
+    public static final ModelLayerLocation GHOST = register("ghost");
     public static final ModelLayerLocation HARPOON = register("harpoon");
     public static final ModelLayerLocation SKELETON_VILLAGER = register("skeleton_villager");
     public static final ArmorModelSet<ModelLayerLocation> SKELETON_VILLAGER_ARMOR = registerArmorSet("skeleton_villager");
@@ -57,6 +59,7 @@ public class ModModelLayers {
     }
 
     public static void registerModelLayers() {
+        ModelLayerRegistry.registerModelLayer(GHOST, GhostModel::createBodyLayer);
         ModelLayerRegistry.registerModelLayer(HARPOON, HarpoonModel::createBodyLayer);
         ModelLayerRegistry.registerModelLayer(SKELETON_VILLAGER,SkeletonVillagerModel::createBodyLayer);
         ModelLayerRegistry.registerArmorModelLayers(SKELETON_VILLAGER_ARMOR, ModModelLayers::createArmorLayer);

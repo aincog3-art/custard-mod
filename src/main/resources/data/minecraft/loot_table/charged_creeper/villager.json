@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "custard:villager_head"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "value": "custard:charged_creeper/villager"
+}

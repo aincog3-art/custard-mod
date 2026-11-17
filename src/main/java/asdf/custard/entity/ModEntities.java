@@ -1,5 +1,6 @@
 package asdf.custard.entity;
 import asdf.custard.Custard;
+import asdf.custard.entity.monster.Ghost;
 import asdf.custard.entity.monster.SkeletonVillager;
 import asdf.custard.entity.monster.Sunken;
 import asdf.custard.entity.projectile.Harpoon;
@@ -25,6 +26,12 @@ public class ModEntities {
                     .sized(0.6f, 1.99f)
     );
 
+    public static final EntityType<Ghost> GHOST = register(
+            ModEntityTypeIds.GHOST,
+            EntityType.Builder.of(Ghost::new, MobCategory.MONSTER)
+                    .sized(0.6f, 1.95f)
+    );
+
     public static final EntityType<Harpoon> HARPOON = register(
             ModEntityTypeIds.HARPOON,
             EntityType.Builder.<Harpoon>of(Harpoon::new, MobCategory.MISC)
@@ -42,5 +49,6 @@ public class ModEntities {
     public static void registerAttributes() {
         FabricDefaultAttributeRegistry.register(SKELETON_VILLAGER, SkeletonVillager.createAttributes());
         FabricDefaultAttributeRegistry.register(SUNKEN, Sunken.createAttributes());
+        FabricDefaultAttributeRegistry.register(GHOST, Ghost.createAttributes());
     }
 }

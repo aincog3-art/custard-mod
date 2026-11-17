@@ -8,10 +8,12 @@ package asdf.custard.client.renderer.entity;
 import asdf.custard.client.model.geom.ModModelLayers;
 import asdf.custard.entity.monster.SkeletonVillager;
 import asdf.custard.entity.monster.Sunken;
+import asdf.custard.entity.monster.SunkenArmPose;
 import com.google.common.collect.Maps;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.PrimitiveCodec;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.animal.axolotl.AdultAxolotlModel;
 import net.minecraft.client.model.animal.axolotl.BabyAxolotlModel;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -30,6 +32,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.util.Util;
 import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.animal.axolotl.Axolotl;
 import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
 import net.minecraft.world.item.CrossbowItem;
@@ -55,11 +58,24 @@ public class SunkenRenderer extends AbstractSkeletonRenderer<Sunken, SunkenRende
         super(context, ModModelLayers.SUNKEN, ModModelLayers.SUNKEN_ARMOR);
     }
 
+    @Override
     public void extractRenderState(final Sunken entity, final SunkenRenderState state, final float partialTicks) {
         super.extractRenderState(entity, state, partialTicks);
+        state.variant = entity.getVariant();
         state.armPose = entity.getArmPose();
         state.ticksUsingItem = entity.getTicksUsingItem();
         state.maxCrossbowChargeDuration = (float) CrossbowItem.getChargeDuration(entity.getUseItem(), entity);
+    }
+
+    @Override
+    protected HumanoidModel.ArmPose getArmPose(final Sunken entity, final HumanoidArm arm) {
+        SunkenArmPose pose = entity.getArmPose();
+        if (pose == SunkenArmPose.CROSSBOW_HOLD) {
+            return HumanoidModel.ArmPose.CROSSBOW_HOLD;
+        } else if (pose == SunkenArmPose.CROSSBOW_CHARGE) {
+            return HumanoidModel.ArmPose.CROSSBOW_CHARGE;
+        }
+        return super.getArmPose(entity, arm);
     }
 
     @Override

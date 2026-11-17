@@ -18,7 +18,6 @@ import net.minecraft.world.level.Level;
 import org.jspecify.annotations.Nullable;
 
 public class Harpoon extends AbstractArrow {
-    private static final float WATER_INERTIA = 0.8F;
     public Harpoon(final EntityType<? extends Harpoon> type, final Level level) {
         super(type, level);
     }
@@ -30,8 +29,19 @@ public class Harpoon extends AbstractArrow {
         super(ModEntities.HARPOON, x, y, z, level, pickupItemStack, firedFromWeapon);
     }
 
+    @Override
+    public boolean isInWaterOrRain() {
+        return false;
+    }
+
+    @Override
+    public boolean isInWater() {
+        return false;
+    }
+
+    @Override
     protected float getWaterInertia() {
-        return WATER_INERTIA;
+        return this.getAirDrag();
     }
     protected ItemStack getDefaultPickupItem() {
         return new ItemStack(ModItems.HARPOON);

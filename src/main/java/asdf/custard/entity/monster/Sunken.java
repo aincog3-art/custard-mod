@@ -25,21 +25,26 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.navigation.AmphibiousPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.monster.CrossbowAttackMob;
 import net.minecraft.world.entity.monster.illager.AbstractIllager;
 import net.minecraft.world.entity.monster.piglin.PiglinArmPose;
 import net.minecraft.world.entity.monster.skeleton.AbstractSkeleton;
+import net.minecraft.world.entity.monster.zombie.Drowned;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import org.jspecify.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.function.IntFunction;
 
 public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
@@ -47,6 +52,7 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
     private static final EntityDataAccessor<Boolean> IS_CHARGING_CROSSBOW;
     public Sunken(final EntityType<? extends Sunken> type, final Level level) {
         super(type, level);
+        this.setPathfindingMalus(PathType.WATER, 0.0F);
     }
 
     @Override
@@ -56,6 +62,10 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
                 wrappedGoal.getGoal() instanceof RangedBowAttackGoal
         );
         this.goalSelector.addGoal(3, new RangedCrossbowAttackGoal<>(this, 1.0F, 8.0F));
+    }
+
+    protected boolean canSpawnInLiquids() {
+        return true;
     }
 
     protected void populateDefaultEquipmentSlots(final RandomSource random, final DifficultyInstance difficulty) {
@@ -96,6 +106,9 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
         }
     }
 
+    protected PathNavigation createNavigation(final Level level) {
+        return new AmphibiousPathNavigation(this, level);
+    }
 
     protected SoundEvent getAmbientSound() {
         return SoundEvents.SKELETON_AMBIENT;
@@ -150,6 +163,7 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
 
     static {
         DATA_VARIANT = SynchedEntityData.defineId(Sunken.class, EntityDataSerializers.INT);
+        IS_CHARGING_CROSSBOW = SynchedEntityData.defineId(Sunken.class, EntityDataSerializers.BOOLEAN);
     }
 
     public static enum Variant implements StringRepresentable {
@@ -204,10 +218,9 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
         }
 
         static {
-            LEGACY_CODEC = Codec.INT.xmap(Sunken.Variant::byId, Sunken.Variant::getId);
+            IntFunction<Sunken.Variant> intFunction = BY_ID;
+            Objects.requireNonNull(intFunction);
+            LEGACY_CODEC = Codec.INT.xmap(intFunction::apply, Sunken.Variant::getId);
         }
-    }
-    static {
-        IS_CHARGING_CROSSBOW = SynchedEntityData.defineId(Sunken.class, EntityDataSerializers.BOOLEAN);
     }
 }

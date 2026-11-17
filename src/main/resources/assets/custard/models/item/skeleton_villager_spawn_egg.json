@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "custard:item/skeleton_villager_spawn_egg"
+  }
+}

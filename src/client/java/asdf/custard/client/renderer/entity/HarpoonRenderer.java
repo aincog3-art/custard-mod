@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.entity.state.SkeletonRenderState;
 import net.minecraft.resources.Identifier;
 
 public class HarpoonRenderer extends ArrowRenderer {
-    private static final Identifier HARPOON_LOCATION = Identifier.fromNamespaceAndPath("minecraft", "textures/entity/arrow.png");
+    private static final Identifier HARPOON_LOCATION = Identifier.fromNamespaceAndPath("custard", "textures/entity/harpoon.png");
 
     public HarpoonRenderer(EntityRendererProvider.Context context) {
         super(context);
