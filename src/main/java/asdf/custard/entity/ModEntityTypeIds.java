@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 
 public class ModEntityTypeIds {
+    public static ResourceKey<EntityType<?>> HAPPY_CREEPER = create("happy_creeper");
     public static ResourceKey<EntityType<?>> SKELETON_VILLAGER = create("skeleton_villager");
     public static ResourceKey<EntityType<?>> SUNKEN = create("sunken");
     public static ResourceKey<EntityType<?>> HARPOON = create("harpoon");

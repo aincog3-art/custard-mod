@@ -18,7 +18,10 @@ public class CustardModelProvider extends FabricModelProvider {
         Identifier defaultHeadItemBase = ModelLocationUtils.decorateItemModelLocation("template_skull");
         blockModelGenerators.createDoor(ModBlocks.GOLDEN_DOOR);
         blockModelGenerators.createTrapdoor(ModBlocks.GOLDEN_TRAPDOOR);
+        blockModelGenerators.createBarsAndItem(ModBlocks.GOLDEN_BARS);
         blockModelGenerators.createHead(ModBlocks.VILLAGER_HEAD, ModBlocks.VILLAGER_WALL_HEAD, ModSkullType.VILLAGER, defaultHeadItemBase);
+        blockModelGenerators.createHead(ModBlocks.ILLAGER_HEAD, ModBlocks.ILLAGER_WALL_HEAD, ModSkullType.ILLAGER, defaultHeadItemBase);
+        blockModelGenerators.createHead(ModBlocks.ZOMBIE_VILLAGER_HEAD, ModBlocks.ZOMBIE_VILLAGER_WALL_HEAD, ModSkullType.ZOMBIE_VILLAGER, defaultHeadItemBase);
     }
 
     public void generateItemModels(ItemModelGenerators itemModelGenerators) {

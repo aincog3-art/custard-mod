@@ -25,12 +25,8 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class ModBlocks {
-    public static final BlockSetTypeBuilder METAL_DOOR;
-    public static final BlockSetTypeBuilder WOODEN_DOOR;
-    static {
-        METAL_DOOR = new BlockSetTypeBuilder();
-        WOODEN_DOOR = new BlockSetTypeBuilder();
-    }
+    public static final BlockSetTypeBuilder METAL_DOOR = new BlockSetTypeBuilder();
+    public static final BlockSetTypeBuilder WOODEN_DOOR = new BlockSetTypeBuilder();
 
     private static Block register(BlockItemId id, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties properties) {
         Block block = register(id.block(), blockFactory, properties);
@@ -62,6 +58,14 @@ public class ModBlocks {
     public static void initialize() {
     }
 
+    public static final Block GOLDEN_BARS = register(
+            ModBlockItemIds.GOLDEN_BARS.block(),
+            properties -> new CustomBarsBlock(
+                    BlockBehaviour.Properties
+                            .ofFullCopy(Blocks.GOLD_BLOCK)
+                            .setId(ModBlockItemIds.GOLDEN_BARS.block())),
+            BlockBehaviour.Properties.of()
+    );
     public static final Block GOLDEN_DOOR = register(
             ModBlockItemIds.GOLDEN_DOOR.block(),
             properties -> new CustomDoorBlock(
@@ -73,12 +77,12 @@ public class ModBlocks {
     );
 
     public static final Block GOLDEN_TRAPDOOR = register(
-            ModBlockIds.GOLDEN_TRAPDOOR,
+            ModBlockItemIds.GOLDEN_TRAPDOOR.block(),
             properties -> new CustomTrapDoorBlock(
                     registerDoorBlockSet(Blocks.GOLD_BLOCK.defaultBlockState(), true),
                     BlockBehaviour.Properties
                             .ofFullCopy(Blocks.GOLD_BLOCK)
-                            .setId(ModBlockIds.GOLDEN_TRAPDOOR)),
+                            .setId(ModBlockItemIds.GOLDEN_TRAPDOOR.block())),
             BlockBehaviour.Properties.of()
     );
 

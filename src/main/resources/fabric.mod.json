@@ -22,7 +22,7 @@
 			"asdf.custard.client.CustardClient"
 		],
 		"fabric-datagen": [
-			"com.example.docs.datagen.ExampleModDataGenerator"
+			"asdf.custard.client.datagen.CustardDataGenerator"
 		]
 	},
 	"mixins": [

@@ -1,5 +1,6 @@
 package asdf.custard.entity;
 import asdf.custard.Custard;
+import asdf.custard.entity.animal.HappyCreeper;
 import asdf.custard.entity.monster.Ghost;
 import asdf.custard.entity.monster.SkeletonVillager;
 import asdf.custard.entity.monster.Sunken;
@@ -15,6 +16,12 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.MobCategory;
 
 public class ModEntities {
+    public static final EntityType<HappyCreeper> HAPPY_CREEPER = register(
+            ModEntityTypeIds.HAPPY_CREEPER,
+            EntityType.Builder.of(HappyCreeper::new, MobCategory.CREATURE)
+                    .sized(0.6f, 1.7f)
+    );
+
     public static final EntityType<SkeletonVillager> SKELETON_VILLAGER = register(
             ModEntityTypeIds.SKELETON_VILLAGER,
             EntityType.Builder.of(SkeletonVillager::new, MobCategory.MONSTER)
@@ -47,6 +54,7 @@ public class ModEntities {
     }
 
     public static void registerAttributes() {
+        FabricDefaultAttributeRegistry.register(HAPPY_CREEPER, HappyCreeper.createAttributes());
         FabricDefaultAttributeRegistry.register(SKELETON_VILLAGER, SkeletonVillager.createAttributes());
         FabricDefaultAttributeRegistry.register(SUNKEN, Sunken.createAttributes());
         FabricDefaultAttributeRegistry.register(GHOST, Ghost.createAttributes());

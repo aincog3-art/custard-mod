@@ -3,7 +3,7 @@
 // (powered by FernFlower decompiler)
 //
 
-package net.minecraft.client.renderer.entity;
+package asdf.custard.client.renderer.entity;
 
 import asdf.custard.client.renderer.entity.state.GhostRenderState;
 import asdf.custard.client.renderer.entity.state.SunkenRenderState;
@@ -11,6 +11,8 @@ import asdf.custard.entity.monster.Ghost;
 import asdf.custard.entity.monster.Sunken;
 import net.minecraft.client.model.HumanoidModel;
 import asdf.custard.client.model.geom.ModModelLayers;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer;
 import net.minecraft.client.renderer.entity.state.ArrowRenderState;
 import net.minecraft.client.renderer.entity.state.ZombieRenderState;

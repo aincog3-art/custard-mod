@@ -8,6 +8,8 @@ import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
@@ -27,6 +29,33 @@ public class ModItems {
             ModItemIds.SUNKEN_SPAWN_EGG,
             SpawnEggItem::new,
             new Item.Properties().spawnEgg(ModEntities.SUNKEN)
+    );
+
+    public static final Item GOLDEN_DOOR = register(
+            ModBlockItemIds.GOLDEN_DOOR.item(),
+            p -> new BlockItem(
+                    ModBlocks.GOLDEN_DOOR,
+                    p
+            ),
+            new Item.Properties()
+    );
+
+    public static final Item GOLDEN_TRAPDOOR = register(
+            ModBlockItemIds.GOLDEN_TRAPDOOR.item(),
+            p -> new BlockItem(
+                    ModBlocks.GOLDEN_TRAPDOOR,
+                    p
+            ),
+            new Item.Properties()
+    );
+
+    public static final Item GOLDEN_BARS = register(
+            ModBlockItemIds.GOLDEN_BARS.item(),
+            p -> new BlockItem(
+                    ModBlocks.GOLDEN_BARS,
+                    p
+            ),
+            new Item.Properties()
     );
 
 
